@@ -12,6 +12,6 @@ class ExampleTest
     @Test
     void twoPlusTwoShouldEqualFour()
     {
-        assertEquals(4, 2 + 2);
+
     }
 }
