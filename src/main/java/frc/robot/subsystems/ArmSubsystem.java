@@ -17,12 +17,10 @@ public class ArmSubsystem extends SubsystemBase {
     SparkMax motor3;
     SparkMax motor4;
     double goal;
-    double OFFSET = 0.205;
-    double G = 0.05;
+    double OFFSET = 0.193;
     DutyCycleEncoder encoder;
-    PID pid = new PID(0.05, 0, 0, 1, 0, 0, this::getAngle);
-    NetworkTableEntry gNetwork=SmartDashboard.getEntry("Arm/G");
-
+    PID pid = new PID(0.0025, 0, 0, 1, 0, 0, this::getAngle);
+    ArmController controller = new ArmController(0.0006, 0.065, 1080, 1200,-1,1,pid,this::getAngle);
 
     public ArmSubsystem() {
 
@@ -47,25 +45,25 @@ public class ArmSubsystem extends SubsystemBase {
 
 
         SmartDashboard.putData("Arm/PID",pid);
-        SmartDashboard.putNumber("Arm/G",G);
+        SmartDashboard.putData("Arm/controller",controller);
         SmartDashboard.putData("Arm/encoder",encoder);
     }
 
     @Override
     public void periodic() {
         super.periodic();
-        double output = pid.calculate()  + gNetwork.getDouble(0) * Math.cos(getAngle() * Math.PI / 180);
-       SmartDashboard.putNumber("Arm/angle", getAngle());
+        double output = controller.calculate(0.02);
+        SmartDashboard.putNumber("Arm/angle", getAngle());
         motor1.set(-output);
     }
 
     public void setAngle(double angle) {
-        if (angle >= 90) {
-            angle = 90;
+        if (angle >= 100) {
+            angle = 100;
         } else if (angle <= 0) {
             angle = 0;
         }
-        pid.setGoal(angle);
+        controller.setGoal(getAngle(),angle,0);
         goal = angle;
     }
 

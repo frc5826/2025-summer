@@ -43,15 +43,14 @@ public class RobotContainer
         //In
         new Trigger(() -> joystick.getRawButton(4)).whileTrue(new RotateCommand(mouthSubsystem, -0.5));
         //Station Pickup
-        new Trigger(() -> joystick.getRawButton(9)).onTrue(new AngleCommand(arm, 90));
+        new Trigger(() -> joystick.getRawButton(9)).onTrue(new AngleCommand(arm, 60));
         //Drop Off
-        new Trigger(() -> joystick.getRawButton(10)).onTrue(new AngleCommand(arm, 30));
+        new Trigger(() -> joystick.getRawButton(12)).onTrue(new AngleCommand(arm, 30));
         //Ground Pickup
         new Trigger(() -> joystick.getRawButton(11)).onTrue(new AngleCommand(arm, 0));
         //Climb
-        new Trigger(() -> joystick.getRawButton(12)).onTrue(new AngleCommand(arm, 90));
+        new Trigger(() -> joystick.getRawButton(10)).onTrue(new AngleCommand(arm, 100));
         new Trigger(() -> xbox.getYButton()).onTrue(new InstantCommand(() -> swerveSubsystem.zeroGyro()));
-        new Trigger(() -> joystick.getRawButton(11)).onTrue(new AngleCommand(arm, 0));
     }
 
     
