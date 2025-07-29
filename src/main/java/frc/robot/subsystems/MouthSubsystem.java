@@ -11,5 +11,12 @@ public class MouthSubsystem extends SubsystemBase {
 
         motor = new SparkMax(13, SparkLowLevel.MotorType.kBrushless);
 
-}
+    }
+
+    public void rotate (double rotateSpeed) {
+
+        motor.set(rotateSpeed);
+
+    }
+
 }

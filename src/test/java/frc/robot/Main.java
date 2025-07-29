@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Guess my number!?");
-        int x = (int) (System.currentTimeMillis() % 100);
+        int x = (int) (System.currentTimeMillis() % 1000000000);
         int y = -1;
         while (x != y) {
             var s = new Scanner(System.in);
@@ -19,3 +19,4 @@ public class Main {
         }
     }
 }
+//Emmett Record for a billion 21m 20s Cooper Record Xm Xs

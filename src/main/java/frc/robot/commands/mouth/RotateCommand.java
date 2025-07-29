@@ -12,4 +12,15 @@ public class RotateCommand extends Command  {
         addRequirements(mouth); //Sets speed of the mouth wheels.
     }
 
+    @Override
+    public void initialize() {
+        super.initialize();
+        mouth.rotate(rotateSpeed);
+    }
+
+    @Override
+    public void end(boolean interrupted) {
+        super.end(interrupted);
+        mouth.rotate(0);
+    }
 }

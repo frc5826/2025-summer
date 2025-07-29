@@ -15,5 +15,15 @@ public class AngleCommand extends Command {
 
     }
 
+    @Override
+    public void initialize() {
+        super.initialize();
+        arm.setAngle(angle);
+    }
 
+    @Override
+    public boolean isFinished() {
+        return Math.abs(angle- arm.getAngle())<5;
+    }
 }
+
